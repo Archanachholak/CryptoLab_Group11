@@ -1,3 +1,6 @@
 Cryptography protects information.
 Encryption converts plaintext into ciphertext.
 Security is important.
+Hello World
+Welcome to CryptoLabX.
+This is Assignment 1.
