@@ -1,0 +1,7 @@
+Vulnerability: Information Leakage
+
+Test:
+Enter incorrect login information.
+
+Expected:
+The application should display a generic error message without revealing sensitive information.

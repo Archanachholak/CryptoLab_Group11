@@ -1,0 +1,16 @@
+Vulnerability: Improper Input Validation
+
+Test 1:
+Enter a negative withdrawal amount.
+
+Input:
+-5000
+
+Test 2:
+Enter zero as withdrawal amount.
+
+Input:
+0
+
+Expected:
+The application should reject invalid withdrawal amounts.
