@@ -1,3 +1,6 @@
+"""Implementation of the Shift Cipher."""
+
+
 def encrypt(text, key):
     result = ""
 
