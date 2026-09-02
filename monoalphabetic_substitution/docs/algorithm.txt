@@ -1,0 +1,31 @@
+MONOALPHABETIC SUBSTITUTION CIPHER
+==================================
+
+Algorithm:
+
+Input:
+    Plaintext P
+    Substitution key K containing 26 unique letters
+
+Output:
+    Ciphertext C
+
+1. Read the plaintext character by character.
+
+2. For each character:
+       If the character is an alphabetic letter:
+           Convert it to uppercase.
+           Find its position in the alphabet.
+           Replace it with the character at the same
+           position in the substitution key.
+
+       Otherwise:
+           Keep the character unchanged.
+
+3. Continue until all plaintext characters have been processed.
+
+4. Store the resulting ciphertext.
+
+5. Display the ciphertext.
+
+6. Save the ciphertext to ciphertext.txt.

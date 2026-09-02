@@ -1,0 +1,70 @@
+WORD FREQUENCY ANALYSIS
+=======================
+
+ONE-LETTER WORDS
+----------------
+Q Q Q Q Q 
+
+TWO-LETTER WORDS
+----------------
+OF VT GY OF VT GY WN GY VT WT ZG OF WT ZG GY OF VT GY OZ OL GY QL OF VT GY OL OZ OL FG QF OL ZG QF QF WT OY OZ ZG QZ ZG XH ZG GY GF GK GY WT GF QF OL OF ZG QL OF OL RT OF OL VT VT XH GF VT RG VT LG OL VT GY 
+
+THREE-LETTER WORDS
+------------------
+ZIT LQV GXK ZIT WXZ IGV EQF ZIT YGK QFR IGV ATN LQN EQF QFN LQN ZIT VQN ZIT ZIT EQF FGZ QFR IQL QFR ZIT ZIT YGK QSS YGK ZIT YGK QFR YGK QKT FGV ZIT VQN YGK QSS FGZ ZIT YQK QFR QKT ZIT FGV WXZ 
+
+REPEATED WORDS
+--------------
+OF -> 8 times
+ZIT -> 12 times
+EIQHZTK -> 3 times
+VT -> 10 times
+LGDT -> 2 times
+YXFRQDTFZQS -> 2 times
+GY -> 10 times
+HTKYTEZ -> 7 times
+LTEKTEN -> 8 times
+ZIOL -> 4 times
+LZXRN -> 2 times
+DGRTKF -> 2 times
+EKNHZGUKQHIN -> 2 times
+VTQATK -> 2 times
+WXZ -> 2 times
+FGZOGF -> 4 times
+EGDHXZQZOGFQS -> 8 times
+IGV -> 2 times
+EQF -> 3 times
+WT -> 4 times
+XLTR -> 2 times
+ZG -> 7 times
+YGK -> 6 times
+QFR -> 5 times
+Q -> 5 times
+LQN -> 2 times
+SGFU -> 2 times
+VQN -> 2 times
+VIOEI -> 2 times
+ZIQZ -> 7 times
+TCTF -> 2 times
+OZ -> 3 times
+OL -> 8 times
+FGZ -> 2 times
+QHHSOEQZOGFL -> 3 times
+QL -> 2 times
+LTEXKOZN -> 6 times
+OFYGKDQZOGF -> 4 times
+QF -> 4 times
+STQATR -> 2 times
+VOZI -> 5 times
+HGVTK -> 2 times
+QSS -> 2 times
+LEITDT -> 2 times
+VGXSR -> 2 times
+LZOSS -> 3 times
+HKGWQWOSOZN -> 3 times
+TQCTLRKGHHTKL -> 2 times
+XH -> 2 times
+GF -> 3 times
+RTYOFOZOGFL -> 2 times
+QKT -> 2 times
+FGV -> 2 times
