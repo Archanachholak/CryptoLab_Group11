@@ -1,3 +1,0 @@
-Caesar Cipher is a classical encryption technique.
-Each letter is shifted by a fixed number.
-It is simple but not secure.

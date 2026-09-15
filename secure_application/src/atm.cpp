@@ -1,17 +1,40 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <limits>
 
 using namespace std;
 
-// Vulnerability 1: Hardcoded credentials
-const string CORRECT_USERNAME = "admin";
-const string CORRECT_PIN = "1234";
-
 double balance = 10000.0;
 
+// Read credentials from a separate configuration file
+bool loadCredentials(string& correctUsername, string& correctPin) {
+    ifstream file("secure_application/src/credentials.txt");
+
+    if (!file) {
+        cout << "Unable to load authentication configuration.\n";
+        return false;
+    }
+
+    getline(file, correctUsername);
+    getline(file, correctPin);
+
+    file.close();
+
+    return !correctUsername.empty() && !correctPin.empty();
+}
+
+
+// Login
 bool login() {
     string username;
     string pin;
+    string correctUsername;
+    string correctPin;
+
+    if (!loadCredentials(correctUsername, correctPin)) {
+        return false;
+    }
 
     cout << "\n===== ATM LOGIN =====\n";
 
@@ -21,15 +44,9 @@ bool login() {
     cout << "PIN: ";
     cin >> pin;
 
-    if (username != CORRECT_USERNAME) {
-        // Vulnerability 3: Information leakage
-        cout << "Error: Username does not exist.\n";
-        return false;
-    }
-
-    if (pin != CORRECT_PIN) {
-        // Vulnerability 3: Information leakage
-        cout << "Error: Username exists, but PIN is incorrect.\n";
+    // Generic error message prevents information leakage
+    if (username != correctUsername || pin != correctPin) {
+        cout << "Invalid username or PIN.\n";
         return false;
     }
 
@@ -37,66 +54,121 @@ bool login() {
     return true;
 }
 
+
+// Check balance
 void checkBalance() {
     cout << "\nCurrent Balance: Rs. " << balance << "\n";
 }
 
+
+// Withdraw
 void withdraw() {
     double amount;
 
     cout << "\nEnter withdrawal amount: ";
-    cin >> amount;
 
-    // Vulnerability 2: Improper input validation
-    if (amount <= balance) {
-        balance -= amount;
-        cout << "Withdrawal successful.\n";
-        cout << "Remaining balance: Rs. " << balance << "\n";
-    } else {
-        cout << "Insufficient balance.\n";
+    if (!(cin >> amount)) {
+        cout << "Invalid amount.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
     }
+
+    // Input validation
+    if (amount <= 0) {
+        cout << "Amount must be greater than zero.\n";
+        return;
+    }
+
+    if (amount > balance) {
+        cout << "Insufficient balance.\n";
+        return;
+    }
+
+    balance -= amount;
+
+    cout << "Withdrawal successful.\n";
+    cout << "Remaining balance: Rs. " << balance << "\n";
 }
 
+
+// Deposit
 void deposit() {
     double amount;
 
     cout << "\nEnter deposit amount: ";
-    cin >> amount;
 
-    // Vulnerability 2: Improper input validation
+    if (!(cin >> amount)) {
+        cout << "Invalid amount.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
+
+    // Input validation
+    if (amount <= 0) {
+        cout << "Amount must be greater than zero.\n";
+        return;
+    }
+
     balance += amount;
 
     cout << "Deposit successful.\n";
     cout << "Current balance: Rs. " << balance << "\n";
 }
 
+
+// Change PIN
 void changePin() {
     string newPin;
 
     cout << "\nEnter new PIN: ";
     cin >> newPin;
 
-    // No proper PIN validation in vulnerable version
+    // PIN validation
+    if (newPin.length() != 4) {
+        cout << "PIN must contain exactly 4 digits.\n";
+        return;
+    }
+
+    for (char c : newPin) {
+        if (!isdigit(c)) {
+            cout << "PIN must contain only digits.\n";
+            return;
+        }
+    }
+
     cout << "PIN changed successfully.\n";
 }
 
+
+// ATM menu
 void atmMenu() {
     int choice;
 
     while (true) {
+
         cout << "\n=============================\n";
         cout << "          ATM MENU\n";
         cout << "=============================\n";
+
         cout << "1. Check Balance\n";
         cout << "2. Withdraw\n";
         cout << "3. Deposit\n";
         cout << "4. Change PIN\n";
         cout << "5. Logout\n";
+
         cout << "Enter choice: ";
 
-        cin >> choice;
+        if (!(cin >> choice)) {
+            cout << "Invalid choice.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
         switch (choice) {
+
             case 1:
                 checkBalance();
                 break;
@@ -123,29 +195,44 @@ void atmMenu() {
     }
 }
 
+
+// Main
 int main() {
+
     cout << "=============================\n";
     cout << "          ATM SYSTEM\n";
     cout << "=============================\n";
 
     while (true) {
+
         cout << "\n1. Login\n";
         cout << "2. Exit\n";
         cout << "Enter choice: ";
 
         int choice;
-        cin >> choice;
+
+        if (!(cin >> choice)) {
+            cout << "Invalid choice.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
         if (choice == 1) {
+
             if (login()) {
                 atmMenu();
             }
+
         }
         else if (choice == 2) {
+
             cout << "Thank you for using the ATM.\n";
             break;
+
         }
         else {
+
             cout << "Invalid choice.\n";
         }
     }

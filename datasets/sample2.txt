@@ -1,3 +1,0 @@
-Python is a popular programming language.
-It is easy to learn.
-Many security tools are written in Python.
