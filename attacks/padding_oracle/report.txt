@@ -1,0 +1,56 @@
+PADDING ORACLE ATTACK
+
+1. AIM
+
+To demonstrate a Padding Oracle Attack on AES-CBC encrypted data and recover plaintext without directly exposing the AES key to the attack function.
+
+2. THEORY
+
+AES processes data in blocks of 16 bytes. CBC (Cipher Block Chaining) combines each plaintext block with the previous ciphertext block before encryption.
+
+PKCS#7 padding adds bytes so that the plaintext length becomes a multiple of 16 bytes. Each padding byte contains the number of padding bytes added.
+
+A padding oracle indicates whether decrypted ciphertext has valid padding. By observing its responses, an attacker can recover plaintext without directly accessing the AES key.
+
+3. WORKING
+
+The attack processes ciphertext one block at a time. It modifies the preceding ciphertext block, or the IV for the first block, and submits the modified block to the padding oracle.
+
+For each byte, the attack tests possible values from right to left. Valid-padding responses help recover the intermediate decryption value and then the plaintext byte.
+
+This process continues until all plaintext blocks are recovered. Finally, PKCS#7 padding is removed.
+
+4. CBC EQUATION
+
+P[i] = D(K, C[i]) XOR C[i-1]
+
+For the first block, C[i-1] represents the initialization vector (IV).
+
+Changing a byte in the preceding ciphertext block changes the corresponding plaintext byte after decryption. This property enables the padding oracle attack.
+
+5. EXPERIMENTAL RESULTS
+
+Test plaintext:
+Padding oracle attack demonstration for cryptography lab.
+
+The program generated a random AES key and IV, encrypted the test plaintext, and performed the attack using a local padding oracle.
+
+Latest recorded result:
+Oracle queries: 9628
+Recovery successful: True
+
+The recovered plaintext matched the original test plaintext.
+
+Note: This is a locally generated demonstration, not an attack on instructor-provided ciphertext.
+
+6. SECURITY RECOMMENDATIONS
+
+1. Prefer authenticated encryption, such as AES-GCM.
+2. Authenticate ciphertext before releasing decrypted data.
+3. Avoid exposing distinguishable padding errors.
+4. Use established cryptographic libraries.
+5. Handle decryption failures securely.
+
+7. CONCLUSION
+
+The experiment demonstrates that a padding oracle can allow plaintext recovery without directly exposing the AES key to the attack function. Authenticated encryption and secure error handling help prevent padding oracle vulnerabilities.

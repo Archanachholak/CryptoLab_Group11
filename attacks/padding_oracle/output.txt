@@ -1,0 +1,5 @@
+Enter a test plaintext: IV: f4bdedfba69ef0c9b8ff61f17551c2de
+Ciphertext: 2db71955b1f2f3af3f1872fbe8eac11f9d2c52718cbac989ee1638853bf5c19dc6d1e5bef83798576432e874b144ebd9012bab3d155c7ca1eda7ee50630b1f92
+Recovered plaintext: Padding oracle attack demonstration for cryptography lab.
+Oracle queries: 9628
+Success: True
